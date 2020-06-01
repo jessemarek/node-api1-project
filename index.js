@@ -37,11 +37,11 @@ server.post('/api/users', (req, res) => {
             //Return the list of users
             res.status(201).json(newUser)
         }
-        else res.status(500).json({ "errorMessage": "There was an error while saving the user to the database" })
+        else res.status(500).json({ errorMessage: "There was an error while saving the user to the database" })
 
     }
     //Return an error message if the data sent doesn't meet requirements
-    else res.status(400).json({ "errorMessage": "Please provide name and bio for the user." })
+    else res.status(400).json({ errorMessage: "Please provide name and bio for the user." })
 })
 
 //Get a list of users from the API
@@ -50,7 +50,7 @@ server.get('/api/users', (req, res) => {
     if (users) {
         res.status(200).json(users)
     }
-    else res.status(500).json({ "errorMessage": "The users information could not be retrieved." })
+    else res.status(500).json({ errorMessage: "The users information could not be retrieved." })
 })
 
 //Get a user by id
@@ -66,11 +66,11 @@ server.get('/api/users/:id', (req, res) => {
             //return the user we want
             res.status(200).json(users[idx])
         }
-        else res.status(500).json({ "errorMessage": "The user information could not be retrieved." })
+        else res.status(500).json({ errorMessage: "The user information could not be retrieved." })
 
     }
     //Return an error message if the user id is not found
-    else res.status(404).json({ "message": "The user with the specified ID does not exist." })
+    else res.status(404).json({ message: "The user with the specified ID does not exist." })
 })
 
 //Delete a user by id
@@ -92,11 +92,11 @@ server.delete('/api/users/:id', (req, res) => {
             //return the deleted user in the res
             res.status(200).json(deletedUser)
         }
-        else res.status(500).json({ "errorMessage": "The user could not be removed" })
+        else res.status(500).json({ errorMessage: "The user could not be removed" })
 
     }
     //Return an error message if the user id is not found
-    else res.status(404).json({ "message": "The user with the specified ID does not exist." })
+    else res.status(404).json({ message: "The user with the specified ID does not exist." })
 })
 
 //Update a user by id
@@ -119,15 +119,15 @@ server.put('/api/users/:id', (req, res) => {
                 //Return the updated list of users
                 res.status(200).json(users)
             }
-            else res.status(500).json({ "errorMessage": "The user information could not be modified." })
+            else res.status(500).json({ errorMessage: "The user information could not be modified." })
 
         }
         //Return an error message if the data sent doesn't meet requirements
-        else res.status(400).json({ "errorMessage": "Please provide name and bio for the user." })
+        else res.status(400).json({ errorMessage: "Please provide name and bio for the user." })
 
     }
     //Return an error message if the user id is not found
-    else res.status(404).json({ "message": "The user with the specified ID does not exist." })
+    else res.status(404).json({ message: "The user with the specified ID does not exist." })
 })
 
 
