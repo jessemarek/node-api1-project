@@ -83,6 +83,24 @@ server.delete('/api/users/:id', (req, res) => {
     else res.status(404).json({ "message": "The user with the specified ID does not exist." })
 })
 
+//Update a user by id
+server.put('/api/users/:id', (req, res) => {
+    const id = Number(req.params.id)
+
+    if (users.some(u => u.id === id)) {
+        if (req.body.name && req.body.bio) {
+            users = users.map(u => u.id !== id ? u : { ...u, name: req.body.name, bio: req.body.bio })
+
+            res.status(200).json(users)
+        }
+        //Return an error message if the data sent doesn't meet requirements
+        else res.status(400).json({ "errorMessage": "Please provide name and bio for the user." })
+
+    }
+    else res.status(404).json({ "message": "The user with the specified ID does not exist." })
+})
+
+
 //Listen for requests
 const port = 8000
 
