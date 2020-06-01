@@ -50,7 +50,7 @@ server.get('/api/users', (req, res) => {
 server.get('/api/users/:id', (req, res) => {
     const id = Number(req.params.id)
 
-    //Check if the user id exists in the data and return the user if found
+    //Check if the user id exists in the data
     if (users.some(u => u.id === id)) {
         //Get the index of the user
         const idx = users.findIndex(u => u.id === id)
@@ -62,6 +62,26 @@ server.get('/api/users/:id', (req, res) => {
     else res.status(404).json({ "message": "The user with the specified ID does not exist." })
 })
 
+//Delete a user by id
+server.delete('/api/users/:id', (req, res) => {
+    const id = Number(req.params.id)
+
+    //Check if the user id exists in the data
+    if (users.some(u => u.id === id)) {
+        //Get the index of the user
+        const idx = users.findIndex(u => u.id === id)
+
+        //Store the user to be deleted for use in the res
+        const deletedUser = users[idx]
+
+        //Delete the user from the data
+        users = users.filter(u => u.id !== id)
+
+        //return the deleted user in the res
+        res.status(200).json(deletedUser)
+    }
+    else res.status(404).json({ "message": "The user with the specified ID does not exist." })
+})
 
 //Listen for requests
 const port = 8000
